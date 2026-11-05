@@ -22,34 +22,81 @@ body{background:radial-gradient(ellipse at 80% 0%,#221b4b 0,transparent 34%),rad
 .ring-banner{display:none;align-items:center;gap:9px;margin:2px 14px 8px;padding:8px 10px;border:1px solid #584459;border-radius:9px;background:linear-gradient(90deg,#352231,#252342);color:#efe7ff}.ring-banner.show{display:flex;animation:eventIn .35s ease-out}.ring-banner b{font-size:8px;display:block}.ring-banner small{font-size:7px;color:#b7a9c8;display:block;margin-top:2px}.ring-dot{height:25px;width:25px;border-radius:50%;display:grid;place-items:center;background:#d95c70;color:white;animation:incomingPulse .9s infinite;font-size:10px}.scenarios{grid-template-columns:repeat(4,minmax(0,1fr))}.scenario.active{animation:scenarioPop .32s ease-out}.lab-controls{flex-wrap:wrap}.lab-controls .btn:disabled{opacity:.4;cursor:not-allowed}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.signal .warning-hint{grid-column:1/-1;font-size:7px;color:#8289a6;margin-top:-3px}.pipeline .pipe-step{transition:border-color .25s,background .25s,transform .25s}.pipeline .pipe-step.active{transform:translateY(-2px);background:#25213e}.architecture article{transition:transform .22s,border-color .22s,box-shadow .22s}.architecture article:hover{transform:translateY(-3px);border-color:#786ee0;box-shadow:0 8px 22px #8e7eff16}.spectrum i{animation:wave .8s ease-in-out infinite alternate,spectrumPulse 1s ease-in-out infinite alternate}.risk-card .dial.sweep{animation:scoreSweep .9s ease-out}@keyframes scenarioPop{from{transform:scale(.96);box-shadow:0 0 0 #948cff00}to{transform:scale(1);box-shadow:0 0 18px #948cff20}}
 @media(max-width:1100px){.scenarios{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
-</head>
-<body>
+<style>
+.nav a{height:40px;border:0;border-radius:9px;padding:0 11px;background:transparent;color:#a7abc4;display:flex;align-items:center;gap:11px;text-align:left;font-size:11px;font-weight:650;text-decoration:none;transition:background .16s,color .16s}
+.nav a:hover{background:#20233b;color:#f0f1ff}.nav a.active{color:#d8d4ff;background:#282442;font-weight:760}.nav a svg{width:16px;height:16px;flex:none}.nav a .badge{margin-left:auto;border-radius:20px;background:#412b42;color:#ffaaa3;font-size:9px;padding:3px 7px;font-weight:800}
+.page-launcher{margin-top:22px}.launcher-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.launcher-card{padding:15px;text-decoration:none;min-height:137px;display:flex;flex-direction:column;align-items:flex-start;transition:transform .18s,border-color .18s,box-shadow .18s}.launcher-card:hover{transform:translateY(-3px);border-color:#625da1;box-shadow:0 16px 32px #03040c66}.launcher-icon{display:grid;place-items:center;width:31px;height:31px;border-radius:10px;background:#252341;color:#bcb6ff;font-weight:800;font-size:15px;margin-bottom:10px}.launcher-card b{color:#f0f1ff;font-size:11px}.launcher-card small{color:#a7abc4;line-height:1.45;font-size:9px;margin-top:5px}.launcher-cta{color:#bbb3ff;font-size:9px;font-weight:750;margin-top:auto;padding-top:12px}
+.audio-intake{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:12px;margin:12px 0}.audio-panel{overflow:hidden}.audio-panel-body{padding:13px 15px 15px}.audio-panel .card-head{border-color:#292d47}.upload-trigger{cursor:pointer}.audio-file-name{display:inline-block;color:#e3e4f7;font-weight:700;font-size:9px;margin-left:8px;max-width:65%;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;white-space:nowrap}.audio-help{font-size:9px;color:#a1a6c0;line-height:1.55;margin:9px 0}.audio-panel audio{display:block;width:100%;height:35px;margin:8px 0}.audio-summary{margin-top:10px;padding:10px;border:1px solid #36344f;border-radius:9px;background:#1a1b31;color:#d9daef;font-size:9px;line-height:1.55}.audio-summary[hidden],#audioPreview[hidden]{display:none}.audio-disclaimer{border:1px solid #3a344b;border-radius:9px;background:#1b192e;color:#a9a7c2;padding:10px 12px;font-size:9px;line-height:1.5;margin-bottom:13px}.audio-disclaimer b{color:#d6cfff}.mic-note{display:flex;gap:8px;border-top:1px solid #292d47;padding-top:10px;margin-top:11px;color:#a5aac4;font-size:8px;line-height:1.45}.mic-note b{color:#5bd3b6;white-space:nowrap}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#globalSearch{display:none!important}
+body[data-page="overview"] #overview>#live-lab,body[data-page="overview"] #overview>#safeguards,body[data-page="overview"] #overview>#activity,body[data-page="overview"] #overview>#voices,body[data-page="overview"] #overview>#controls{display:none!important}
+body[data-page="overview"] #pageLauncher{display:block!important}
+body[data-page="live-lab"] #overview>:not(.top):not(#live-lab):not(.footnote),body[data-page="safeguards"] #overview>:not(.top):not(#safeguards):not(.footnote),body[data-page="activity"] #overview>:not(.top):not(#activity):not(.footnote),body[data-page="voices"] #overview>:not(.top):not(#voices):not(.footnote),body[data-page="controls"] #overview>:not(.top):not(#controls):not(.footnote){display:none!important}
+body[data-page="live-lab"] #overview>#live-lab,body[data-page="safeguards"] #overview>#safeguards,body[data-page="activity"] #overview>#activity,body[data-page="voices"] #overview>#voices,body[data-page="controls"] #overview>#controls{display:block!important}
+body[data-page="live-lab"] .scenario[data-scenario="mic"]{display:none}
+@media(max-width:860px){.nav a{height:34px;white-space:nowrap;padding:0 10px}.launcher-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.audio-intake{grid-template-columns:1fr}}
+@media(max-width:620px){.launcher-grid{grid-template-columns:1fr}.launcher-card{min-height:120px}.audio-file-name{display:block;margin:9px 0 0;max-width:100%}}
+</style></head>
+<body data-page="overview">
 <div class="shell">
 <aside class="side">
   <div class="brand"><div class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2.8 20 6v5.3c0 5-3.2 8.5-8 10.2-4.8-1.7-8-5.2-8-10.2V6z"/><path d="M7.5 12h2l1.3-3 2.5 6 1.3-3h2"/></svg></div><div><b>NEXORA</b><small>SIGNAL DESK</small></div></div>
   <div class="workspace"><small>Workspace</small><strong>Northstar Finance ▾</strong></div>
   <div class="nav-label">Protection</div>
   <nav class="nav" aria-label="Main navigation">
-    <button class="active" data-go="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg>Overview</button>
-    <button data-go="live-lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 10v4m4-8v12m4-16v20m4-14v8m4-11v14"/></svg>Live signal lab</button>
-    <button data-go="safeguards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3 5 6v5c0 4.6 2.8 8 7 10 4.2-2 7-5.4 7-10V6z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>Case safeguards<span class="badge">2</span></button>
-    <button data-go="activity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16M4 12h16M4 19h16"/><circle cx="8" cy="5" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/><circle cx="10" cy="19" r="1" fill="currentColor"/></svg>Call activity</button>
-    <button data-go="voices"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.6 2.6-5.5 6.5-5.5s6 1.9 6.5 5.5M16 5.5a3.5 3.5 0 0 1 0 6.8m2 2.8c2.1.8 3.2 2.4 3.5 4.9"/></svg>Trusted voices</button>
-    <button data-go="controls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 3.1-.2-.1a1.7 1.7 0 0 0-1.9.2l-.2.1h-3.6l-.1-.2a1.7 1.7 0 0 0-1.6-1.2 1.8 1.8 0 0 0-.8.2l-.2.1-3.1-1.8.1-.2A1.7 1.7 0 0 0 6 15.3l-.1-.2v-3.6l.2-.1a1.7 1.7 0 0 0 1-2.4l-.1-.2 1.8-3.1.2.1a1.7 1.7 0 0 0 2.4-1l.1-.2h3.6l.1.2a1.7 1.7 0 0 0 2.4 1l.2-.1 1.8 3.1-.1.2a1.7 1.7 0 0 0 1 2.4l.2.1v3.6z"/></svg>Controls & channels</button>
+    <a class="nav-link" data-page-link="overview" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg>Overview</a>
+    <a class="nav-link" data-page-link="live-lab" href="live-lab.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 10v4m4-8v12m4-16v20m4-14v8m4-11v14"/></svg>Live signal lab</a>
+    <a class="nav-link" data-page-link="safeguards" href="safeguards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3 5 6v5c0 4.6 2.8 8 7 10 4.2-2 7-5.4 7-10V6z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>Case safeguards<span class="badge">2</span></a>
+    <a class="nav-link" data-page-link="activity" href="activity.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16M4 12h16M4 19h16"/><circle cx="8" cy="5" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/><circle cx="10" cy="19" r="1" fill="currentColor"/></svg>Call activity</a>
+    <a class="nav-link" data-page-link="voices" href="voices.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.6 2.6-5.5 6.5-5.5s6 1.9 6.5 5.5M16 5.5a3.5 3.5 0 0 1 0 6.8m2 2.8c2.1.8 3.2 2.4 3.5 4.9"/></svg>Trusted voices</a>
+    <a class="nav-link" data-page-link="controls" href="controls.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 3.1-.2-.1a1.7 1.7 0 0 0-1.9.2l-.2.1h-3.6l-.1-.2a1.7 1.7 0 0 0-1.6-1.2 1.8 1.8 0 0 0-.8.2l-.2.1-3.1-1.8.1-.2A1.7 1.7 0 0 0 6 15.3l-.1-.2v-3.6l.2-.1a1.7 1.7 0 0 0 1-2.4l-.1-.2 1.8-3.1.2.1a1.7 1.7 0 0 0 2.4-1l.1-.2h3.6l.1.2a1.7 1.7 0 0 0 2.4 1l.2-.1 1.8 3.1-.1.2a1.7 1.7 0 0 0 1 2.4l.2.1v3.6z"/></svg>Controls & channels</a>
   </nav>
   <div class="side-foot"><div class="privacy-mini"><b>✓ Privacy guard on</b><p>Live analysis, feature-only event records. Raw call audio is not saved.</p></div><div class="user"><div class="avatar">AM</div><div><b>Alex Morgan</b><small>Security analyst</small></div></div></div>
 </aside>
 <main class="main" id="overview">
   <header class="top"><div class="crumb">NEXORA <span>/</span> Signal desk</div><div class="top-right"><input class="search" id="globalSearch" placeholder="Search calls or people…" aria-label="Search calls or people"><span class="demo-chip">INTERACTIVE DEMO</span><button class="icon-btn" aria-label="Notifications">♧</button><div class="avatar">AM</div></div></header>
-  <div class="intro"><div><div class="eyebrow">Tuesday, 5 November · Protection overview</div><h1>Good morning, Alex.</h1><p>Your call channels are protected. One conversation needs a second look.</p></div><button class="btn btn-primary" data-jump="live-lab">▷ &nbsp;Try a voice scenario</button></div>
+  <div class="intro"><div><div class="eyebrow">Tuesday, 5 November · Protection overview</div><h1>Good morning, Alex.</h1><p>Your call channels are protected. One conversation needs a second look.</p></div><a class="btn btn-primary" href="live-lab.html">▷ &nbsp;Try a voice scenario</a></div>
   <section class="hero reveal">
-    <div class="hero-copy"><div class="hero-kicker">NEXORA voice integrity</div><h2>Trust the signal. Verify the action.</h2><p>Voice, caller identity, and request context work together to flag risky conversations before a payment or approval moves forward.</p><div class="hero-actions"><button class="btn btn-primary" data-jump="safeguards">Review flagged case&nbsp; →</button><button class="btn btn-glass" data-jump="controls">Explore protection setup</button></div></div>
+    <div class="hero-copy"><div class="hero-kicker">NEXORA voice integrity</div><h2>Trust the signal. Verify the action.</h2><p>Voice, caller identity, and request context work together to flag risky conversations before a payment or approval moves forward.</p><div class="hero-actions"><a class="btn btn-primary" href="safeguards.html">Review flagged case&nbsp; →</a><a class="btn btn-glass" href="controls.html">Explore protection setup</a></div></div>
     <div class="hero-stat"><div class="orbit"><b>98</b></div><div><strong>Channels protected</strong><small>Telephony · VoIP · collaboration</small></div></div>
   </section>
   <section class="metrics" aria-label="Protection metrics"><div class="metric reveal"><label>Calls checked today</label><strong>1,284</strong><small>↑ 8.4%</small></div><div class="metric reveal"><label>Threats stopped</label><strong>47</strong><small>↑ 6 today</small></div><div class="metric reveal"><label>Needs review</label><strong style="color:#d35e57">2</strong><small style="color:#c78540">1 urgent</small></div><div class="metric reveal"><label>Connected channels</label><strong>03</strong><small>All online</small></div></section>
 
+  <section class="section page-launcher" id="pageLauncher" aria-label="Choose a workspace">
+    <div class="section-head"><div><h2>Your workspaces</h2><p>Open one focused tool at a time.</p></div><span class="tag safe">6 AREAS</span></div>
+    <div class="launcher-grid">
+      <a class="card launcher-card" href="live-lab.html"><span class="launcher-icon">⌁</span><b>Live Signal Lab</b><small>Upload a recording or inspect live microphone input.</small><span class="launcher-cta">Open lab →</span></a>
+      <a class="card launcher-card" href="safeguards.html"><span class="launcher-icon">✓</span><b>Case Safeguards</b><small>Verify callers and bind approvals to exact requests.</small><span class="launcher-cta">Review safeguards →</span></a>
+      <a class="card launcher-card" href="activity.html"><span class="launcher-icon">≋</span><b>Call Activity</b><small>Search recent signal checks and outcomes.</small><span class="launcher-cta">View activity →</span></a>
+      <a class="card launcher-card" href="voices.html"><span class="launcher-icon">◉</span><b>Trusted Voices</b><small>Manage consented voice references.</small><span class="launcher-cta">Open registry →</span></a>
+      <a class="card launcher-card" href="controls.html"><span class="launcher-icon">⚙</span><b>Controls & Channels</b><small>Adjust privacy, thresholds, and connection policy.</small><span class="launcher-cta">Open controls →</span></a>
+    </div>
+  </section>
+
   <section class="section" id="live-lab">
-    <div class="section-head"><div><h2>Live signal lab</h2><p>Explore a realistic call pattern. Sample data only; no live call is connected.</p></div><span class="tag live">SIMULATION</span></div>
+    <div class="section-head"><div><h2>Live signal lab</h2><p>Test a sample, upload a recording, or use live microphone input.</p></div><span class="tag live">SIMULATION</span></div>
+    <div class="audio-intake" aria-label="Choose an audio source">
+      <article class="card audio-panel">
+        <div class="card-head"><div><b>Upload an audio recording</b><small>Choose an audio clip from this device for a local signal summary.</small></div><span class="tag live">LOCAL FILE</span></div>
+        <div class="audio-panel-body">
+          <input class="sr-only" id="audioFileInput" type="file" accept="audio/*,.wav,.mp3,.m4a,.ogg,.webm" aria-label="Choose an audio recording">
+          <label class="btn btn-primary upload-trigger" for="audioFileInput">↑ &nbsp;Choose audio file</label>
+          <div class="audio-file-name" id="audioFileName">No file selected</div>
+          <p class="audio-help" id="audioFileStatus">MP3, WAV, M4A, OGG or WebM · up to 25 MB. The file stays in this browser tab.</p>
+          <audio id="audioPreview" controls hidden></audio>
+          <button class="btn btn-quiet" id="analyzeRecording" type="button" disabled>Run local signal summary</button>
+          <div class="audio-summary" id="recordingSummary" role="status" aria-live="polite" hidden></div>
+        </div>
+      </article>
+      <article class="card audio-panel mic-panel">
+        <div class="card-head"><div><b>Use live microphone audio</b><small>Stream a short voice sample directly into this browser.</small></div><span class="tag safe">LIVE INPUT</span></div>
+        <div class="audio-panel-body">
+          <p class="audio-help">No audio file is needed. Select live mic, then press <b>Start call</b>. Your browser will ask for microphone access at that point.</p>
+          <button class="btn btn-quiet" id="useLiveMic" type="button">🎙 &nbsp;Choose live microphone</button>
+          <div class="mic-note"><b>Privacy</b><span>Audio is analyzed in-session for a basic level and spectrum preview. This prototype does not send or save the recording.</span></div>
+        </div>
+      </article>
+    </div>
+    <div class="audio-disclaimer"><b>Prototype limit:</b> Uploaded and live audio get local signal summaries only. A real deepfake verdict needs a connected detection model; the sample scenarios below are simulations.</div>
     <div class="grid2">
       <article class="card live-card" id="liveCard">
         <div class="card-head"><div><b>Call in focus</b><small>Choose a scenario to preview the protection flow</small></div><div style="display:flex;align-items:center;gap:7px"><button class="btn btn-quiet" id="labAutoBtn" aria-pressed="true" style="padding:6px 8px;font-size:8px">✦ Auto-protect ON</button><span class="tag live" id="callBadge">ANALYZING</span></div></div>
@@ -77,7 +124,7 @@ body{background:radial-gradient(ellipse at 80% 0%,#221b4b 0,transparent 34%),rad
   </section>
 
   <section class="section" id="safeguards">
-    <div class="section-head"><div><h2>Case safeguards</h2><p>Bind verification to the exact requested action, then keep a clear audit trail.</p></div><a href="#activity" data-jump="activity">View activity →</a></div>
+    <div class="section-head"><div><h2>Case safeguards</h2><p>Bind verification to the exact requested action, then keep a clear audit trail.</p></div><a href="activity.html">View activity →</a></div>
     <div class="grid2">
       <article class="card decision-card"><div class="card-head"><div><b>Transaction-bound Trust Relay</b><small>One approval · one recipient · one amount</small></div><span class="tag" id="transferTag">ACTION PENDING</span></div>
         <div class="decision-body"><div class="transaction"><div class="transaction-top"><small>Requested over this call</small><span class="tag" id="holdTag">NOT VERIFIED</span></div><div class="amount" id="txAmount">₹8,40,000</div><div class="payee">New beneficiary · <strong id="txPayee">Atlas Systems Pvt Ltd</strong></div><div class="transaction-meta"><div><small>Purpose</small><b id="txPurpose">Vendor settlement</b></div><div><small>Approval window</small><b>Expires in 60 sec</b></div></div></div>
@@ -125,7 +172,7 @@ $("pauseTx").addEventListener("click",()=>{held=true;$("holdTag").textContent="O
 $("verifyTx").addEventListener("click",()=>{const s=scenarios[selected];$("verifyDetail").innerHTML=`<b>${s.amount}</b> → ${s.payee}<br>Transaction NS-2819 · Bound to this exact request`;$("verifyModal").classList.add("open")});$("closeModal").addEventListener("click",()=>$("verifyModal").classList.remove("open"));$("verifyModal").addEventListener("click",e=>{if(e.target===$("verifyModal"))$("verifyModal").classList.remove("open")});document.addEventListener("keydown",e=>{if(e.key==="Escape")$("verifyModal").classList.remove("open")});
 document.querySelectorAll(".verify-choice").forEach(b=>b.addEventListener("click",()=>{const method=b.dataset.method;$("verifyModal").classList.remove("open");$("relayStatus").textContent="Request created · expires in 60 sec";$("holdTag").textContent="VERIFYING";$("transferTag").textContent=held?"ON HOLD · VERIFYING":"VERIFYING";$("historyOutcome").textContent="Verification started";$("historyOutcome").className="status review";addEvent(method,"Bound to the amount and recipient shown in Trust Relay.","✓");notify(method+" · exact transaction details attached.")}));
 function addEvent(title,desc,icon,kind=""){const row=document.createElement("div");row.className="event";row.dataset.search=(title+" "+desc).toLowerCase();const time=new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});row.innerHTML=`<div class="event-icon ${kind}">${icon}</div><div><b>${title}</b><small>${desc}</small></div><time>${time}</time>`;$("caseEvents").prepend(row)}
-document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-go]").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.go).scrollIntoView({behavior:"smooth",block:"start"})}));document.querySelectorAll("[data-jump]").forEach(b=>b.addEventListener("click",()=>$(b.dataset.jump).scrollIntoView({behavior:"smooth",block:"start"})));
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-go]").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.go).scrollIntoView({behavior:"smooth",block:"start"})}));/* Page links use real HTML navigation now. */
 function filterRows(value){const q=value.trim().toLowerCase();document.querySelectorAll("#historyRows tr, #caseEvents .event").forEach(r=>{const hay=(r.dataset.search||r.innerText).toLowerCase();r.style.display=!q||hay.includes(q)?"":"none"})}$("globalSearch").addEventListener("input",e=>filterRows(e.target.value));$("activitySearch").addEventListener("input",e=>filterRows(e.target.value));
 $("autoToggle").addEventListener("click",e=>{const on=e.currentTarget.classList.toggle("on");e.currentTarget.setAttribute("aria-pressed",String(on));$("autoLabel").textContent=on?"Enabled · 3 channels":"Paused by analyst";notify(on?"Always-on protection enabled.":"Always-on protection paused in this demo.")} );$("threshold").addEventListener("input",e=>$("thresholdValue").textContent=e.target.value);
 $("addVoice").addEventListener("click",()=>notify("Voice enrollment requires the speaker’s consent and an approved secure capture flow."));
@@ -155,11 +202,42 @@ $("labAutoBtn").addEventListener("click",()=>$ ("autoToggle").click());$("autoTo
 $("challengeBtn").addEventListener("click",()=>{labWords=(labWords+1)%wordSets.length;$("challengeWords").textContent=wordSets[labWords].join(" · ");$("challengeState").textContent="Ready to ask";labPipeline(1);labLog("Random voice challenge generated · three words.");notify("New three-word challenge is ready.")});
 $("challengeCheck").addEventListener("click",()=>{const passed=selected==="genuine";$("challengeState").textContent=passed?"Response sounds consistent":"Response needs independent review";labPipeline(2);labEvent(passed?"Challenge response was consistent":"Challenge response was inconclusive",passed?"Continue checking the request context.":"Use a saved number or registered app; a phrase alone is not identity proof.",passed?"✓":"!",passed?"":"alert");notify(passed?"Challenge signal is consistent; continue normal checks.":"Challenge does not verify this caller.")});
 $("labAutoBtn").setAttribute("aria-pressed","true");
-const labObserver=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)&&autoOn&&!labAutoStarted&&!labRunning){labAutoStarted=true;if(selected==="mic")chooseScenario("clone");$("incomingBanner").classList.add("show");$("ringTitle").textContent="Incoming call detected";$("ringText").textContent="Auto-protect starts a simulated call check.";labLog("Incoming call detected · auto-protect started checking.");setTimeout(()=>startLabCall(true),650)}},{threshold:.2});labObserver.observe($("live-lab"));
+/* Live audio starts only after an explicit user action. */
 chooseScenario("clone");
 </script>
 <script>
 document.querySelector('[data-scenario="mic"]').addEventListener("click",()=>{setTimeout(()=>{$("riskNumber").textContent="—";$("acScore").textContent="—";$("inScore").textContent="—";$("dial").style.setProperty("--angle","0deg");document.querySelectorAll("#signals .signal strong").forEach(el=>el.textContent="—")},0)});
 </script>
-</body>
+<script>
+(()=>{
+  const page=document.body.dataset.page||"overview";
+  const names={overview:"Protection overview","live-lab":"Live Signal Lab",safeguards:"Case safeguards",activity:"Call activity",voices:"Trusted voices",controls:"Controls & channels"};
+  document.title="NEXORA Signal Desk — "+(names[page]||"Voice Integrity");
+  document.querySelectorAll("[data-page-link]").forEach(link=>link.classList.toggle("active",link.dataset.pageLink===page));
+  const crumb=document.querySelector(".crumb");if(crumb)crumb.innerHTML="NEXORA <span>/</span> "+(names[page]||"Signal desk");
+  const fileInput=document.getElementById("audioFileInput"),fileName=document.getElementById("audioFileName"),fileStatus=document.getElementById("audioFileStatus"),preview=document.getElementById("audioPreview"),analyze=document.getElementById("analyzeRecording"),summary=document.getElementById("recordingSummary");
+  if(fileInput&&fileName&&fileStatus&&preview&&analyze&&summary){
+    let chosenFile=null,objectUrl=null;
+    fileInput.addEventListener("change",()=>{
+      const file=fileInput.files&&fileInput.files[0];summary.hidden=true;analyze.disabled=true;chosenFile=null;
+      if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl=null}preview.removeAttribute("src");preview.hidden=true;
+      if(!file){fileName.textContent="No file selected";fileStatus.textContent="MP3, WAV, M4A, OGG or WebM · up to 25 MB. The file stays in this browser tab.";return}
+      const ext=(file.name.split(".").pop()||"").toLowerCase();const known=["mp3","wav","m4a","ogg","webm","aac","flac","mp4"];const audioType=file.type.startsWith("audio/")||known.includes(ext);
+      if(!audioType){fileInput.value="";fileName.textContent="No file selected";fileStatus.textContent="Choose a supported audio recording.";return}
+      if(file.size>25*1024*1024){fileInput.value="";fileName.textContent="No file selected";fileStatus.textContent="That file is over the 25 MB limit. Choose a smaller recording.";return}
+      chosenFile=file;objectUrl=URL.createObjectURL(file);preview.src=objectUrl;preview.hidden=false;analyze.disabled=false;fileName.textContent=file.name;fileStatus.textContent=(file.size/1024/1024).toFixed(2)+" MB · Stored only in this tab; nothing is sent to a server.";
+    });
+    analyze.addEventListener("click",async()=>{
+      if(!chosenFile)return;analyze.disabled=true;analyze.textContent="Reading audio locally…";summary.hidden=false;summary.textContent="Decoding the recording in this browser…";
+      let duration=Number.isFinite(preview.duration)?preview.duration:0,channels=1,rms=0,peak=0;
+      try{const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)throw new Error("Audio decoding is unavailable in this browser.");const ctx=new AudioCtx();const buffer=await ctx.decodeAudioData(await chosenFile.arrayBuffer());duration=buffer.duration;channels=buffer.numberOfChannels;const samples=buffer.getChannelData(0);const stride=Math.max(1,Math.floor(samples.length/120000));let sum=0,count=0;for(let i=0;i<samples.length;i+=stride){const value=Math.abs(samples[i]);sum+=value*value;peak=Math.max(peak,value);count++}rms=Math.sqrt(sum/Math.max(1,count));await ctx.close();
+        summary.innerHTML="<b>Local signal summary</b><br>Duration: "+duration.toFixed(1)+" sec · Channels: "+channels+" · Average level: "+Math.round(rms*100)+"% · Peak: "+Math.round(peak*100)+"%<br><span>This describes the audio signal only. It does not detect cloned voices.</span>";
+      }catch(error){summary.textContent="Could not decode this format in the browser. Try WAV, MP3 or M4A. The file was not uploaded.";}
+      analyze.disabled=false;analyze.textContent="Run local signal summary";
+    });
+    window.addEventListener("beforeunload",()=>{if(objectUrl)URL.revokeObjectURL(objectUrl)});
+  }
+  const liveButton=document.getElementById("useLiveMic");if(liveButton)liveButton.addEventListener("click",()=>{const mic=document.querySelector('[data-scenario="mic"]');if(mic)mic.click();const hint=document.getElementById("micHint");if(hint)hint.textContent="Live microphone selected · press Start call to request access";const start=document.getElementById("startCall");if(start)start.focus()});
+})();
+</script></body>
 </html>
